@@ -6,7 +6,6 @@ ADC_74HC4066::ADC_74HC4066(int s0Pin, int s1Pin, int s2Pin, int s3Pin, int analo
     pinMode(s1, OUTPUT);
     pinMode(s2, OUTPUT);
     pinMode(s3, OUTPUT);
-    pinMode(analogInput, INPUT);
 }
 
 void ADC_74HC4066::selectChannel(int channel) {
