@@ -1,18 +1,30 @@
 #include <Arduino.h>
+#include <ADC_74HC4066.h>
+#define ANALOG_74HC4067 35
+#define S0_74HC4067 32
+#define S1_74HC4067 33
+#define S2_74HC4067 13
+#define S3_74HC4067 16
 
-// put function declarations here:
-int myFunction(int, int);
-
-void setup() {
+ADC_74HC4066 adc(S0_74HC4067,
+                 S1_74HC4067,
+                 S2_74HC4067,
+                 S3_74HC4067,
+                 ANALOG_74HC4067);
+void setup()
+{
   // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
 }
 
-void loop() {
+void loop()
+{
   // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  for (uint8_t i = 0; i < 16; i++)
+  {
+    adc.selectChannel(i);
+    int val = adc.read();
+    Serial.printf("ADC%d: %d\n", i, val);
+  }
+  delay(100);
 }
