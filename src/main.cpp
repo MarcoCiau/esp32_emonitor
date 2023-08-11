@@ -20,11 +20,13 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
+  Serial.println("New ADC Read");
   for (uint8_t i = 0; i < 16; i++)
   {
     adc.selectChannel(i);
+    delay(2);
     int val = adc.read();
-    Serial.printf("ADC%d: %d\n", i, val);
+    Serial.printf("ADC%d: %d\n", i + 1, val);
   }
-  delay(100);
+  delay(1000);
 }
