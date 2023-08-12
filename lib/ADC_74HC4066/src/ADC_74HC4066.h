@@ -19,20 +19,20 @@ public:
     ADC_74HC4066(int s0Pin, int s1Pin, int s2Pin, int s3Pin, int analogPin);
 
     /**
-     * @brief Selects the specified channel on the multiplexer.
-     * @param channel Channel number (0 to 15).
-     */
-    void selectChannel(int channel);
-
-    /**
      * @brief Reads and returns the analog value from the selected channel.
+     * @param channel Channel number (0 to 15).
      * @return Analog value.
      */
-    int read();
+    uint16_t read(uint8_t channel);
 
 private:
     int s0, s1, s2, s3;
     int analogInput;
+    /**
+     * @brief Selects the specified channel on the multiplexer.
+     * @param channel Channel number (0 to 15).
+     */
+    void selectChannel(int channel);
 };
-
+extern ADC_74HC4066 adc;
 #endif // ADC_74HC4066_H
