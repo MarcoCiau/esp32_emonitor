@@ -1,0 +1,11 @@
+#ifndef HW_CONFIG_H
+#define HW_CONFIG_H
+#define ANALOG_74HC4067 35
+#define S0_74HC4067 32
+#define S1_74HC4067 33
+#define S2_74HC4067 13
+#define S3_74HC4067 16
+#define NUM_MAX_CURRENT_SENSOR 2
+#define DEFAULT_100A_CT_CAL 154.50
+#define DEFAULT_30A_CT_CAL 35.50
+#endif
