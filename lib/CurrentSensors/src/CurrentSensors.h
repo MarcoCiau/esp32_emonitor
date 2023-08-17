@@ -1,18 +1,17 @@
 #ifndef CURRENTSENSOR_H
 #define CURRENTSENSOR_H
 #include <Arduino.h>
-#include <EmonLibMod.h>
-
+#include <EmonLib.h>
+#include "HWConfig.h"
 class CurrentSensors
 {
 private:
-  double readings[20];// 1 x volt val, 3 x current val, 2 x power factor val
+  float calibration[NUM_MAX_CURRENT_SENSOR];
+  double readings[NUM_MAX_CURRENT_SENSOR];
+  EnergyMonitor sensor[NUM_MAX_CURRENT_SENSOR];
   uint8_t lastSensorRead;
-
   /* Execute Sensors Readings*/
   void readNow(uint8_t nSensor);
-  void handleVISensor(EnergyMonitor * sensor, uint8_t sensorID);
-  void handleISensor(EnergyMonitor * sensor, uint8_t sensorID);
   void debugSensors();
 public:
   void begin();
