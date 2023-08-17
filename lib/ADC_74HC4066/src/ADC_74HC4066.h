@@ -34,5 +34,5 @@ private:
      */
     void selectChannel(int channel);
 };
-extern ADC_74HC4066 adc;
+
 #endif // ADC_74HC4066_H

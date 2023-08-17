@@ -1,9 +1,5 @@
 #include "ADC_74HC4066.h"
-#define ANALOG_74HC4067 35
-#define S0_74HC4067 32
-#define S1_74HC4067 33
-#define S2_74HC4067 13
-#define S3_74HC4067 16
+
 void ADC_74HC4066::selectChannel(int channel) {
     if (channel >= 0 && channel < 16) {
         digitalWrite(s0, channel & 0x01);
@@ -23,15 +19,7 @@ ADC_74HC4066::ADC_74HC4066(int s0Pin, int s1Pin, int s2Pin, int s3Pin, int analo
     analogReadResolution(12);
 }
 
-
-
 uint16_t ADC_74HC4066::read(uint8_t channel) {
     selectChannel(channel);
     return analogRead(analogInput);
 }
-
-ADC_74HC4066 adc(S0_74HC4067,
-                 S1_74HC4067,
-                 S2_74HC4067,
-                 S3_74HC4067,
-                 ANALOG_74HC4067);
