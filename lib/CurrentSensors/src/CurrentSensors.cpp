@@ -43,14 +43,24 @@ void CurrentSensors::loop()
   debugSensors();
 }
 
-void CurrentSensors::readNow(uint8_t nSensor)
+void CurrentSensors::readNow(uint8_t channel)
 {
-  readings[nSensor] = sensor[nSensor].calcIrms(500);
+  readings[channel] = (float)sensor[channel].calcIrms(500);
 }
 
-double CurrentSensors::getCurr(uint8_t nSensor)
+float CurrentSensors::getValue(uint8_t channel)
 {
-  return readings[nSensor];
+  return readings[channel];
+}
+
+float CurrentSensors::getCalibration(uint8_t channel)
+{
+  return calibration[channel];
+}
+
+void CurrentSensors::setCalibration(uint8_t channel, float value)
+{
+  calibration[channel] = value;
 }
 
 void CurrentSensors::debugSensors()

@@ -7,16 +7,18 @@ class CurrentSensors
 {
 private:
   float calibration[NUM_MAX_CURRENT_SENSOR];
-  double readings[NUM_MAX_CURRENT_SENSOR];
+  float readings[NUM_MAX_CURRENT_SENSOR];
   EnergyMonitor sensor[NUM_MAX_CURRENT_SENSOR];
   uint8_t lastSensorRead;
   /* Execute Sensors Readings*/
-  void readNow(uint8_t nSensor);
+  void readNow(uint8_t channel);
   void debugSensors();
 public:
   void begin();
   void loop();
-  double getCurr(uint8_t nSensor);
+  float getValue(uint8_t channel);
+  float getCalibration(uint8_t channel);
+  void setCalibration(uint8_t channel, float value);
 };
 
 extern CurrentSensors currentSensors;
