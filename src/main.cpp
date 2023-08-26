@@ -27,7 +27,7 @@ void setup()
 
 void loop()
 {
-  // currentSensors.loop();
+  currentSensors.loop();
 }
 
 void connectToWiFi()
