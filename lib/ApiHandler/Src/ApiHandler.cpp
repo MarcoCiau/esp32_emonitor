@@ -16,9 +16,9 @@ ApiHandler::ApiHandler() {
  */
 bool ApiHandler::handleCalibrate(const JsonDocument& json, String *response) {
     int channel = json["channel"]; 
-    int value = json["calibrationValue"]; 
+    float value = json["calibrationValue"]; 
     if (channel >= NUM_MAX_CURRENT_SENSOR) return false;
-    Serial.printf("Data-> channel : %d , %d \n", channel, value);
+    Serial.printf("Data-> channel : %d , %.2f \n", channel, value);
     // Perform the calibration update tasks here
     currentSensors.setCalibration(channel, value);
     // Prepare and return a response message
