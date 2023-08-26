@@ -45,6 +45,7 @@ uint32_t EEPROMStorage::read32(uint8_t addr)
   data = data | (EEPROM.read(addr + 2) << 8);
   data = data | (EEPROM.read(addr + 1) << 16);
   data = data | (EEPROM.read(addr) << 24);
+  if (data == 0xFFFFFFFF) return 0;
   return data;
 }
 
@@ -65,14 +66,14 @@ void EEPROMStorage::resetDefaults()
 
 void EEPROMStorage::setCalibration(uint8_t channel, uint32_t value)
 {
-  uint8_t start = 0;
-  write32(start + channel, value);
+  uint8_t start = channel * 4;
+  write32(start, value);
 }
 
 uint32_t EEPROMStorage::getCalibration(uint8_t channel)
 {
-  uint8_t start = 0;
-  return read32(start + channel);
+  uint8_t start = channel * 4;
+  return read32(start);
 }
 
 
