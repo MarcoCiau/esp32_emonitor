@@ -29,10 +29,10 @@ bool ApiHandler::handleCalibrate(const JsonDocument& json, String *response) {
 String ApiHandler::handleGetAllCalibrate()
 {
     String response = "[";
-    for (uint8_t i = 0; i < 16; i++)
+    for (uint8_t i = 0; i < NUM_MAX_CURRENT_SENSOR; i++)
     {
         response += String(currentSensors.getCalibration(i));
-        if (i < 15) response += ",";
+        if (i < NUM_MAX_CURRENT_SENSOR - 1) response += ",";
     }
     response += "]";
     return response;
@@ -41,10 +41,10 @@ String ApiHandler::handleGetAllCalibrate()
 String ApiHandler::handleGetAllCurrentSensor()
 {
     String response = "[";
-    for (uint8_t i = 0; i < 16; i++)
+    for (uint8_t i = 0; i < NUM_MAX_CURRENT_SENSOR; i++)
     {
         response += String(currentSensors.getValue(i));
-        if (i < 15) response += ",";
+        if (i < NUM_MAX_CURRENT_SENSOR - 1) response += ",";
     }
     response += "]";
     return response;
