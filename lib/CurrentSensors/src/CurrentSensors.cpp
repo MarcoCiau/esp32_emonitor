@@ -1,5 +1,6 @@
 #include "CurrentSensors.h"
 #include <ADC_74HC4066.h>
+#include <EEPROMStorage.h>
 #define DEBUG_VERBOSE
 #define ICALIBRATION_30A 90.000
 #define ICALIBRATION_100A 177.00
@@ -27,7 +28,9 @@ void CurrentSensors::begin()
 {
   for (uint8_t i = 0; i < NUM_MAX_CURRENT_SENSOR; i++)
   {
-    sensor[i].current(i, DEFAULT_100A_CT_CAL);
+    uint32_t ical = storage.getCalibration(i);
+    if (ical > 0) sensor[i].current(i, (float)ical/100.00);
+    else sensor[i].current(i, DEFAULT_100A_CT_CAL);
     sensor[i].setVREF(3300U);
     sensor[i].attachADCReadCallback(readADC);
   }
@@ -55,11 +58,13 @@ float CurrentSensors::getValue(uint8_t channel)
 
 float CurrentSensors::getCalibration(uint8_t channel)
 {
+  calibration[channel] = (float)storage.getCalibration(channel) / 100.00;
   return calibration[channel];
 }
 
 void CurrentSensors::setCalibration(uint8_t channel, float value)
 {
+  storage.setCalibration(channel, (uint32_t)(value * 100));
   calibration[channel] = value;
 }
 

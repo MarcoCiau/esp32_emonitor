@@ -4,7 +4,7 @@
 #include <WiFi.h>
 #include <eMonitorWebServer.h>
 #include <SPIFFS.h>
-
+#include <EEPROMStorage.h>
 eMonitorWebServer server(4444);
 const char* ssid = "Ciau";
 const char* password = "EaSyNeTMilk2";
@@ -16,6 +16,7 @@ void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  storage.begin();
   connectToWiFi();
   if (!SPIFFS.begin()) {
     Serial.println("Failed to mount file system");
