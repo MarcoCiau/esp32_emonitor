@@ -55,6 +55,8 @@ void eMonitorWebServer::begin() {
 
     // Start the server
     server->begin();
-    Serial.print("Server running on port: ");
+    Serial.print("Server running on: ");
+    Serial.print(WiFi.localIP());
+    Serial.print(":");
     Serial.println(this->port);
 }

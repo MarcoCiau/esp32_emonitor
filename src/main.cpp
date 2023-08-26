@@ -38,6 +38,5 @@ void connectToWiFi()
     delay(1000);
     Serial.println("Connecting to WiFi...");
   }
-  Serial.print("WiFi Connected. ");
-  Serial.println(WiFi.localIP());
+  Serial.println("WiFi Connected. ");
 }
