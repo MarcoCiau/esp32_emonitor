@@ -28,13 +28,11 @@ void eMonitorWebServer::begin() {
     // Handle GET request for calibration data
     server->on("/calibration", HTTP_GET, [](AsyncWebServerRequest *request) {
         request->send(200, "application/json", apiHandler.handleGetAllCalibrate());
-        Serial.println("GET /calibration");
     });
 
     // Handle GET request for current data
     server->on("/current", HTTP_GET, [](AsyncWebServerRequest *request) {
         request->send(200, "application/json", apiHandler.handleGetAllCurrentSensor());
-        Serial.println("GET /current");
     });
 
     // Handle POST request for calibration update
