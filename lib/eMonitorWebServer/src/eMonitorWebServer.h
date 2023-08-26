@@ -3,7 +3,7 @@
 #include <Arduino.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
-
+#include <ApiHandler.h>
 /**
  * @brief Custom class for a web server with asynchronous handling.
  */
